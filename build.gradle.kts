@@ -2,7 +2,6 @@ plugins {
     kotlin("jvm") version "1.5.31"
     kotlin("plugin.allopen") version "1.5.31"
     id("io.quarkus")
-    jacoco
 }
 
 repositories {
@@ -21,6 +20,7 @@ dependencies {
     implementation("io.quarkus:quarkus-resteasy-jackson")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("io.quarkus:quarkus-arc")
+    implementation("io.quarkus:quarkus-jacoco")
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
 }
@@ -44,12 +44,12 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.javaParameters = true
 }
 
-tasks.test {
-    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
-}
-tasks.jacocoTestReport {
-    dependsOn(tasks.test) // tests are required to run before generating the report
-    reports {
-        xml.required.set(true)
-    }
-}
+//tasks.test {
+//    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+//}
+//tasks.jacocoTestReport {
+//    dependsOn(tasks.test) // tests are required to run before generating the report
+//    reports {
+//        xml.required.set(true)
+//    }
+//}
